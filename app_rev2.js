@@ -102,10 +102,11 @@ async function fyfy() {
 
     //table of contents (packt only)
     let descBody = document.getElementById('bookDescription_feature_div');
-    if(descBody && descBody.querySelector('script:not([id])')) {
-      descBody = descBody.querySelector('script:not([id])').text
-      .split('bookDescEncodedData = "')[1].split('",\n')[0]
-      .split('Table%20of%20Contents%3C%2Fh4%3E')[1];
+    if(descBody?.querySelector('script:not([id])')) {	
+      descBody = descBody.querySelector('script:not([id])').text.split('bookDescEncodedData = "')[1];	
+      if(descBody) descBody = descBody.split('",\n')[0];	
+      if(descBody) descBody = descBody.split('Table%20of%20Contents%3C%2Fh4%3E')[1];	
+      if(!descBody) descBody = null;	
     }
     else
       descBody = null;
